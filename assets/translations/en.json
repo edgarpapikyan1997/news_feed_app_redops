@@ -1,5 +1,11 @@
 {
   "main": {
-
+      "viewAll" : "View all",
+    "insiderFeed" : "Insider feed",
+    "myInterests" : "My interests",
+    "somethingWentWrong" : "Something went wrong",
+    "showMore" : "Show more",
+    "showLess" : "Show less",
+    "alert" : "Alert"
   }
 }

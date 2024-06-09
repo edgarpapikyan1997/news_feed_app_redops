@@ -11,6 +11,7 @@ class PostModel  extends Equatable{
     required this.image,
     required this.dep,
     required this.postDate,
+    required this.alert,
     required this.tags,
     required this.description,
   });
@@ -22,6 +23,7 @@ class PostModel  extends Equatable{
   final String dep;
   @JsonKey(name: "post_date")
   final String postDate;
+  final String? alert;
   final List<String> tags;
   final String description;
 

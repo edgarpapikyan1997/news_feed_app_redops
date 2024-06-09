@@ -23,7 +23,7 @@ class _AppState extends State<App> {
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.white,
-        statusBarIconBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.dark,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: MaterialApp.router(

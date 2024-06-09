@@ -33,7 +33,7 @@ void main() async {
           ),
           BlocProvider<PostBloc>(
             create: (context) =>
-                PostBloc(PostRepository())..add(const LoadPostEvent(count: 0, startIndex: 0, )),
+                PostBloc(PostRepository())..add(const LoadPostEvent(count: 0, startIndex: 0,favorites: false )),
           ),
         ],
         child: configuredApp,

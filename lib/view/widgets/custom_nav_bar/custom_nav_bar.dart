@@ -8,7 +8,7 @@ class CustomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        backgroundColor: AppColors.backGroundColorLight,
+        backgroundColor: AppColors.whiteBackground,
         items: [
           bottomNavBarItem(icon: Icon(Icons.home), label: 'Home'),
           bottomNavBarItem(icon: Icon(Icons.chat), label: 'Feed'),
