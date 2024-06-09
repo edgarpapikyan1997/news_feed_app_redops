@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:redops_app/models/data/user_data_model.dart';
-import 'package:redops_app/models/support/support_model.dart';
+import '../data/user_data_model.dart';
+import '../support/support_model.dart';
 
 part 'user_model.g.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:redops_app/models/data/user_data_model.dart';
-import 'package:redops_app/presenter/bloc/user_bloc/user_bloc.dart';
+import 'package:redops_app/models/post_model/post_model.dart';
+import 'package:redops_app/presenter/bloc/post_bloc/post_bloc.dart';
 import 'package:redops_app/view/widgets/custom_nav_bar/custom_nav_bar.dart';
 
 class NewsFeedPage extends StatefulWidget {
@@ -13,7 +13,6 @@ class NewsFeedPage extends StatefulWidget {
 }
 
 class _NewsFeedPageState extends State<NewsFeedPage> {
-
   final ScrollController _scrollController = ScrollController();
   bool _hasReachedMax = false;
 
@@ -21,25 +20,26 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
-    BlocProvider.of<UserBloc>(context).add(LoadUserEvent(page: 1));
+    BlocProvider.of<PostBloc>(context)
+        .add(const LoadPostEvent(count: 5, startIndex: 0));
   }
 
   void _onScroll() {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
-      final userBloc = BlocProvider.of<UserBloc>(context);
-      if (userBloc.state is UserLoadedState) {
-        final currentState = userBloc.state as UserLoadedState;
+      final postBloc = BlocProvider.of<PostBloc>(context);
+      if (postBloc.state is PostLoadedState) {
+        final currentState = postBloc.state as PostLoadedState;
         if (!currentState.hasReachedMax) {
-          userBloc.add(LoadUserEvent(page: userBloc.page));
-        }else if(!_hasReachedMax){
+          postBloc.add(
+              LoadPostEvent(count: 5, startIndex: currentState.posts.length));
+        } else if (!_hasReachedMax) {
           _showNoMoreDataNotification();
-          // _hasReachedMax = true;
+          _hasReachedMax = true;
         }
       }
     }
   }
-
 
   void _showNoMoreDataNotification() {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -56,47 +56,59 @@ class _NewsFeedPageState extends State<NewsFeedPage> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: Cus,
       bottomNavigationBar: const CustomNavBar(),
-      body: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
-        if (state is UserLoadingState && state is! UserLoadedState) {
+      body: BlocBuilder<PostBloc, PostState>(builder: (context, state) {
+        if (state is PostLoadingState && state is! PostLoadedState) {
           return const Center(
             child: CupertinoActivityIndicator(),
           );
         }
-        if (state is UserErrorState) {
-          return const Center(child: Text("Error"));
+        if (state is PostErrorState) {
+          return const Center(child: Text("Error Something went wrong!!!"));
         }
-        if (state is UserLoadedState) {
-          List<UserDataModel> userDataList = state.users;
-          return ListView.builder(
-              controller: _scrollController,
-              physics: const BouncingScrollPhysics(),
-              itemCount: userDataList.length + 1,
-              itemBuilder: (_, index) {
-                if (index >= userDataList.length) {
-                  return state.hasReachedMax
-                      ? Container()
-                      : const Center(
-                    child: CupertinoActivityIndicator(),
-                  );
-                }
-                return ListTile(
-                    title: Text(
-                      '${userDataList[index].firstName}  ${userDataList[index]
-                          .lastName} \n ${userDataList[index].avatar}',
-                      style: const TextStyle(color: Colors.black, fontSize: 25),
-                    ));
-              });
+        if (state is PostLoadedState) {
+          List<PostModel> postDataList = state.posts;
+          print('post count ${postDataList.length}');
+          return CustomScrollView(
+            controller: _scrollController,
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    if (index >= postDataList.length) {
+                      return state.hasReachedMax
+                          ? Container()
+                          : const Center(
+                        child: CupertinoActivityIndicator(),
+                      );
+                    }
+                    PostModel postModel = postDataList[index];
+                    return ListTile(
+                      title: Text(postModel.name),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(postModel.dep),
+                          Text(postModel.postDate),
+                          if (postModel.image != null) Image.asset(postModel.image!),
+                        ],
+                      ),
+                    );
+
+                  },
+                  childCount: postDataList.length + 1,
+                ),
+              )
+            ]
+          );
         }
-        return Container(
-          child: Text('Something went wrong'),
-        );
+        return Container(child: Text('Something went wrong'));
       }),
     );
   }
 }
-
