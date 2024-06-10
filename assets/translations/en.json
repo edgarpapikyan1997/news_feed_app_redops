@@ -6,6 +6,16 @@
     "somethingWentWrong" : "Something went wrong",
     "showMore" : "Show more",
     "showLess" : "Show less",
-    "alert" : "Alert"
+    "alert" : "Alert",
+    "report" : "Report",
+    "areYouSure" : "Are you sure you want to report this post?",
+    "postReported":"You have reported this post",
+    "yes" : "Yes",
+    "noGoBack" : "No, go back",
+    "ok" : "OK",
+    "feed": "Feed",
+    "conditions" : "Conditions",
+    "settings" : "Settings",
+    "addToFav" : "Add to Interests"
   }
 }

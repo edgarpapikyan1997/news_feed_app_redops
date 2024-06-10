@@ -50,7 +50,6 @@ class _TextDescriptionState extends State<TextDescription> {
                       Text(
                         flag ? "main.showMore".tr() : "main.showLess".tr(),
                         style: context.theme.headline9.buttonBlue),
-
                     ],
                   ),
                   onTap: () {

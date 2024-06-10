@@ -11,13 +11,15 @@ class AppColors {
   ///Light Theme
   static const whiteBackground = Color(0xffF7F8FB);
   static const buttonWhite = Color(0xFFF6F7F8);
+  static const buttonWhite2 = Color(0xFFF1F1F1);
   static const buttonBlue = Color(0xFF458DBE);
   static const buttonTagColor = Color(0xFFEEEEEE);
 
   /// TextColors
   static const darkBlueTextColor = Color(0xFF002561);
+  static const darkBlueTextColor2 = Color(0xFF17305C);
   static const alertRedTextColor = Color(0xFFCD716F);
-
+  static const greyDark = Color(0xFF474747);
   /// Accent colors for light theme
   static const blackBlue = Color(0xFF1A2130);
   static const shadowColor2 = Color(0xFF323B62);

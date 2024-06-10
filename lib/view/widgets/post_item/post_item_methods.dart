@@ -29,18 +29,4 @@ String getPostedDateTime(DateTime date, {bool numericDates = true}) {
   }
 }
 
-Widget TagsWrap(
-    {required List<String> tags,
-    required BuildContext context,
-    required bool showMore}) {
-  return Wrap(
-    spacing: 8,
-    children: tags.map((tag) {
-      return CustomButton(
-        bordersAllRadius: 12,
-        buttonColor: AppColors.buttonTagColor,
-        child: Text(tag, style: context.theme.headline6.black).paddingAll(12),
-      ).paddingVertical(4);
-    }).toList(),
-  );
-}
+

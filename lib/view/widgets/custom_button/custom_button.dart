@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:redops_app/utils/extensions/extensions.dart';
 
 class CustomButton extends StatelessWidget {
   final Widget child;
@@ -10,9 +11,11 @@ class CustomButton extends StatelessWidget {
   final double topRightRadius;
   final double bottomLeftRadius;
   final double bottomRightRadius;
-
+  final bool? makeBorder;
   final double? height;
   final double? width;
+  final double? borderWidth;
+  final Color? borderColor;
 
   const CustomButton({
     super.key,
@@ -27,13 +30,22 @@ class CustomButton extends StatelessWidget {
     this.bottomLeftRadius = 0,
     this.bottomRightRadius = 0,
     this.bordersAllRadius,
+    this.makeBorder,
+    this.borderWidth,
+    this.borderColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onTap,
       child: Container(
+          width: width,
+          height: height,
           decoration: BoxDecoration(
+            border: makeBorder == true
+                ? Border.all(width: borderWidth ?? 0, color: borderColor ?? Colors.white)
+                : null,
             color: buttonColor,
             borderRadius: bordersAllRadius != null
                 ? BorderRadius.circular(bordersAllRadius!)
@@ -45,7 +57,6 @@ class CustomButton extends StatelessWidget {
                   ),
           ),
           child: child),
-      onTap: onTap,
     );
   }
 }

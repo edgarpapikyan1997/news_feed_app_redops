@@ -94,6 +94,12 @@ extension ThemeDataHelper on ThemeData {
       decoration: TextDecoration.underline,
       decorationColor: AppColors.buttonBlue);
 
+  TextStyle get headline10 => const TextStyle(
+    // fontFamily: FontFamily.Nunito,
+      fontWeight: FontWeight.w600,
+      color: AppColors.whiteBackground,
+      fontSize: 11,);
+
   TextStyle get subtitle1 => textTheme.titleMedium!;
 
   TextStyle get subtitle2 => textTheme.titleSmall!;
@@ -207,9 +213,16 @@ extension TextStyleHelpers on TextStyle {
 
   TextStyle get orange => copyWith(color: AppColors.orange);
 
+  TextStyle get greyDark => copyWith(color: AppColors.greyDark);
+
+
   TextStyle get buttonBlue => copyWith(color: AppColors.buttonBlue);
 
   TextStyle get alertRed => copyWith(color: AppColors.alertRedTextColor);
+
+  TextStyle get alertRed2 => copyWith(color: AppColors.alertRed);
+
+
 
   TextStyle size([double? fontSize]) => copyWith(fontSize: fontSize);
 
