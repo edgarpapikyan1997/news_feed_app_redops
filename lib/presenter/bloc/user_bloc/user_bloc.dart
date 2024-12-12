@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:redops_app/models/data/user_data_model.dart';
 import '../../../http/repositories/user_repository.dart';
+import '../../../models/user_models/data/user_data_model.dart';
 
 part 'user_event.dart';
 

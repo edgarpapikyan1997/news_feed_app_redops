@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:redops_app/http/dio/dio_client.dart';
-import 'package:redops_app/models/data/user_data_model.dart';
+import '../../models/user_models/data/user_data_model.dart';
 
 class UserRepository {
   UserRepository({DioClient? dioClient})

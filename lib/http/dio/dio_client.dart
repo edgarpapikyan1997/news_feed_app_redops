@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:redops_app/models/data/user_data_model.dart';
+import '../../models/user_models/data/user_data_model.dart';
 
 class DioClient {
   // http: //18.217.172.204/api/user/posts
@@ -35,18 +35,6 @@ class DioClient {
       }
     } on DioException catch (error) {
       throw Exception(error);
-    }
-  }
-
-  Future<dynamic> getAllPosts() async {
-    try {
-      final Response response = await _dio.get(
-          'http://18.217.172.204/api/user/posts');
-      print(response.data);
-      return response.data;
-    } on
-    DioException catch (e) {
-      print(e);
     }
   }
 }
